@@ -1,2 +1,3 @@
-Go To <img width="256" height="256" alt="Cute cat" src="https://github.com/user-attachments/assets/90d83140-ea96-4e35-b0be-0684539efdd7" />
+Go To cute cat.png
 Then Change Extension To .pdf Then See Yourself...
+yes it's a polyglot file or sometimes also called polygraphy file.
