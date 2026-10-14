@@ -1,0 +1,34 @@
+import os
+
+def create_png_pdf_polyglot(png_path, pdf_path, output_path):
+    """
+    Creates a simple concatenated polyglot file.
+    When opened in an image viewer, it reads the PNG header.
+    When opened in a tolerant PDF viewer, it finds the %PDF- header downstream.
+    """
+    try:
+        # Read the raw binary content of both valid files
+        with open(png_path, 'rb') as f_png:
+            png_data = f_png.read()
+            
+        with open(pdf_path, 'rb') as f_pdf:
+            pdf_data = f_pdf.read()
+            
+        # Combine the data: PNG must come first due to strict offset 0 requirement
+        polyglot_data = png_data + pdf_data
+        
+        # Write to the final output file
+        with open(output_path, 'wb') as f_out:
+            f_out.write(polyglot_data)
+            
+        print(f"[+] Successfully generated polyglot file: {output_path}")
+        print(f"    - Total size: {len(polyglot_data)} bytes")
+        
+    except FileNotFoundError as e:
+        print(f"[-] Error: Please check your input paths. {e}")
+    except Exception as e:
+        print(f"[-] An error occurred: {e}")
+
+# Example Usage:
+# Ensure you have a 'sample.png' and 'sample.pdf' in your working directory
+create_png_pdf_polyglot("sample.png", "sample.pdf", "polyglot_output.png")
